@@ -18,7 +18,7 @@ import { subscription } from "./types/serverPayloads/payload";
 interface wsClientEvents {
   subscriptionChange: (subscription: subscription) => {};
   connected: () => void;
-  disconnected: (code: number, reason: buffer) => void;
+  disconnected: (code: number, reason: Buffer) => void;
   AchievementEarned: (event: AchievementEarned) => void;
   BattleRankUp: (event: BattleRankUp) => void;
   Death: (event: Death) => void;
