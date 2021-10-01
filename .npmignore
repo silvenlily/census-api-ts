@@ -1,0 +1,13 @@
+build/tests*
+.npmCache/*
+libdev/*
+src/*
+.env
+.gitignore
+.gitlab-ci.yml
+.releaserc.json
+nodemon.json
+tsconfig.json
+workspace.code-workspace
+yarn.lock
+package-lock.json

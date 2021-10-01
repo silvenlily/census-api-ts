@@ -1,0 +1,8 @@
+node_modules/
+build/*
+.npmCache/*
+package-lock.json
+yarn.lock
+notes
+tests/tokens.json
+.env
