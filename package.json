@@ -1,6 +1,6 @@
 {
   "name": "@silver_lily/census-lib",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "library for interacting withe ps2 census api",
   "main": "./build/lib.js",
   "typings": "./build/lib.d.ts",
