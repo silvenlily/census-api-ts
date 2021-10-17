@@ -1,8 +1,4 @@
-function continentIdFromName(name: string) {
-  return idMap.get(name);
-}
-
-const idMap = new Map([
+const serverIdMap = new Map([
   ["connery", 1],
   ["emerald", 17],
   ["cobalt", 13],
@@ -11,5 +7,9 @@ const idMap = new Map([
   ["jaeger", 19],
 ]);
 
-export { continentIdFromName, idMap };
-export default continentIdFromName;
+function serverIdFromName(name: string) {
+  return serverIdMap.get(name);
+}
+
+export { serverIdFromName, serverIdMap };
+export default serverIdFromName;
