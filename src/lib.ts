@@ -1,6 +1,8 @@
 import wsClient from "./wsClient/client";
 import restClient from "./restClient/client";
 
+import { idMap, continentIdFromName } from "./utils/continentIdFromName";
+
 import type eventOptions from "./wsClient/types/eventSubscriptionOptions";
 import type eventTypes from "./wsClient/eventTypes";
 
@@ -22,6 +24,8 @@ import type MetagameEvent from "./wsClient/types/events/worldEvents/metagameEven
 import type { subscription as Subscription } from "./wsClient/types/serverPayloads/payload";
 
 export {
+  idMap,
+  continentIdFromName,
   wsClient,
   restClient,
   eventOptions,

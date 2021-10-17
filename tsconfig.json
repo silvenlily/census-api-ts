@@ -12,6 +12,6 @@
     "outDir": "build",
     "preserveConstEnums": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "devtools/proceduralTypeConstructor/a.ts"],
   "exclude": ["node_modules", "src/config/*", "**/*.spec.ts"]
 }

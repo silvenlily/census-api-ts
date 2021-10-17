@@ -4,7 +4,7 @@ export default async function runWebsocketTest() {
   let ws = new wsClient();
 
   ws.on("connected", () => {
-    let eventOptions: eventOptions = { eventNames: ["AchievementEarned"] };
+    let eventOptions: eventOptions = { eventNames: ["AchievementEarned"], characters: ["all"] };
     ws.subscribe(eventOptions);
   });
 
