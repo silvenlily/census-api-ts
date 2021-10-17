@@ -1,13 +1,14 @@
 import { TypedEmitter } from "tiny-typed-emitter";
 import WebSocket from "ws";
 import type eventSubOptions from "./types/eventSubscriptionOptions";
-import type subscribePayload from "./types/clientPayloads/subscribe";
-import type eventTypes from "./eventTypes";
-import { eventName } from "./types/utils";
-import clientPayload from "./types/clientPayloads/clientPayload";
+import type subscribePayload from "./types/payloads/subscribe";
+import type clearSubscribePayload from "./types/payloads/clearSubscribe";
+import type wsEventTypes from "./wsEventTypes";
+import { eventName, worldID } from "./types/utils";
+import clientPayload from "./types/payloads/clientPayload";
 import { eventOptionsBoth } from "./types/eventSubscriptionOptions";
 
-class wsClient extends TypedEmitter<eventTypes> {
+class wsClient extends TypedEmitter<wsEventTypes> {
   serviceID: string;
   ws: WebSocket;
   constructor(params?: { serviceID?: string; environment?: "ps2" | "ps2ps4us" | "ps2ps4eu" }) {
@@ -29,7 +30,8 @@ class wsClient extends TypedEmitter<eventTypes> {
 
     this.ws.on("message", (data) => {
       let msg: any = JSON.parse(data.toString());
-      if (!msg.type) {
+
+      if (msg.subscription) {
         wsClient.emit("subscriptionChange", msg);
       }
 
@@ -79,13 +81,29 @@ class wsClient extends TypedEmitter<eventTypes> {
       throw "You must provide either a character or world filter or both";
     }
 
-    console.log("payload: " + JSON.stringify(payload));
     this._send(payload);
   }
 
-  async unSubscribe(events: eventName | "all") {
-    if (events == "all") {
+  async unSubscribe(options: {
+    events: ("all" | eventName)[];
+    worlds?: worldID[];
+    characterids?: string[];
+  }) {
+    let payload: clearSubscribePayload = {
+      service: "event",
+      action: "clearSubscribe",
+      eventNames: options.events,
+    };
+
+    if (options.worlds) {
+      payload.worlds = options.worlds;
     }
+
+    if (options.characterids) {
+      payload.characters = options.characterids;
+    }
+
+    this._send(payload);
   }
 
   async disconnect() {
